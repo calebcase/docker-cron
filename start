@@ -1,0 +1,14 @@
+#!/bin/sh
+set -euo pipefail
+
+# Create the spool if it doesn't exist.
+mkdir -p /var/spool/cron/crontabs
+
+# Copy provided crontabs to the spool.
+if [[ -d /crontabs ]]; then
+  for file in /crontabs/*; do
+    crontab -u "$(basename "$file")" "$file"
+  done
+fi
+
+exec crond -f -d 8
