@@ -48,3 +48,9 @@ smmsp
 guest
 nobody
 ```
+
+Note: Crontab files do *not* have the same format as the files found on
+most systems in `/etc/cron.d`. Crontab files lack the `user` portion
+found between the time specification and command. If you leave the
+`user` portion in cron will interpret that as the command itself and you
+will not get the desired result.
